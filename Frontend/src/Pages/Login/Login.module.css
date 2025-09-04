@@ -1,0 +1,148 @@
+* {
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main {
+  background-color: #f5f7f8;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  margin-bottom: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0 10px;
+  background-color: white;
+}
+
+.inputWrapper:focus-within {
+  border-color: #007bff;
+}
+
+.icon {
+  color: #888;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: sans-serif;
+  outline: none;
+  background: none;
+}
+
+.loginBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.loginBtn:hover {
+  background-color: #0056b3;
+}
+.loginBtn:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.loadingSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(25, 118, 210, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+.loginBtnLoading {
+  background-color: hsl(220, 40%, 62%);
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+
+.links {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+.eyeButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eyeIcon {
+  font-size: 1rem;
+}
+.errorText {
+  color: red;
+  font-size: 0.85rem;
+}
+.error {
+  display: flex;
+}

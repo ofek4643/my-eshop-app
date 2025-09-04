@@ -1,0 +1,91 @@
+.warrper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  max-width: 100%;
+  line-height: 1.7;
+  transition: transform 0.2s ease-in-out;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1d3557;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.subTitle {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #457b9d;
+  margin-bottom: 25px;
+}
+
+.secendHeader {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: #1d3557;
+}
+
+p {
+  width: 100%;
+  color: #444;
+  margin-top: 8px;
+}
+
+.backButton {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #1d3557, #457b9d);
+  margin: 20px;
+}
+
+.backButton:hover {
+  background: linear-gradient(135deg, #142b47, #35617a);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 20px;
+    font-size: 0.95rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subTitle {
+    font-size: 1rem;
+  }
+
+  .secendHeader {
+    font-size: 1.1rem;
+  }
+
+  .backButton {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 0;
+    margin-bottom: 20px;
+  }
+}

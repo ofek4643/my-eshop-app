@@ -1,0 +1,152 @@
+.home {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.arrowLeft,
+.arrowRight {
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.arrowLeft {
+  right: 30px;
+}
+
+.arrowRight {
+  left: 30px;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  text-align: left;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.info {
+  display: flex;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.productContianer {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.card {
+  width: 250px;
+  height: 330px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.cardImage {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardPrice {
+  font-weight: bold;
+  color: #0070f3;
+  margin-bottom: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.pageButton {
+  font-size: 18px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #0070f3;
+}
+
+.active {
+  background-color: #0070f3;
+  color: white;
+  border-color: #0070f3;
+}
+.linkProduct {
+  text-decoration: none;
+  color: black;
+}
+.loadingSpinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(25, 118, 210, 0.3);
+  border-top-color: #1976d2;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  position: absolute;
+  bottom: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+@keyframes spin {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}

@@ -1,0 +1,81 @@
+* {
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: #f5f7f8;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border 0.2s ease;
+}
+
+.input:focus {
+  border-color: #007bff;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.street {
+  flex: 2;
+}
+
+.houseNumber {
+  flex: 1;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.submitBtn:hover {
+  background-color: #0056b3;
+}

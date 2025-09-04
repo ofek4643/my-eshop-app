@@ -1,0 +1,105 @@
+.footer {
+  background-color: #26354d;
+  color: white;
+  padding: 40px 20px;
+  font-family: "Arial", sans-serif;
+  direction: rtl;
+}
+
+.containerAll {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.containerInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 35px;
+  margin-bottom: 30px;
+}
+
+.headers {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.text {
+  color: #cbd5e1;
+  width: 260px;
+}
+
+.white {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.white:hover {
+  color: #007bff;
+}
+
+.listItem {
+  list-style: none;
+  margin-bottom: 12px;
+  font-size: 15px; 
+}
+.twoGap p {
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.inputField {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 0px 6px 6px 0px;
+  font-size: 14px;
+}
+
+.sendBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px 0px 0px 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sendBtn:hover {
+  background-color: #005dc1;
+}
+
+.copyRight {
+  border-top: 1px solid #475569;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.socialList {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.socialList li {
+  font-size: 16px;
+}
+
+.socialList li a:hover {
+  color: #007bff;
+}
+
