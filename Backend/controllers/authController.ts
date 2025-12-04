@@ -79,7 +79,7 @@ export const register = async (
     return res
       .status(201)
       .json({ message: "נרשמת בהצלחה, אנא אמת את האימייל שלך" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.error);
     return res
       .status(500)
@@ -105,7 +105,7 @@ export const verifyUser = async (
     await User.findByIdAndUpdate(userId, { verified: true });
 
     return res.status(200).json({ message: "האימייל אומת בהצלחה!" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     return res.status(400).json({ error: "קישור האימות לא חוקי או שפג תוקפו" });
   }
@@ -155,7 +155,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
       path: "/",
     });
     return res.status(201).json({ message: "משתמש התחבר בהצלחה!" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     return res
       .status(500)
