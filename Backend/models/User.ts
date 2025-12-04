@@ -16,8 +16,14 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin"],
+      enum: ["user", "admin", "superAdmin"],
       default: "user",
+    },
+    code: {
+      type: Number,
+    },
+    codeExpiresAt: {
+      type: Date,
     },
     verified: { type: Boolean, default: false },
   },

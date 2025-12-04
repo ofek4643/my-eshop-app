@@ -17,7 +17,9 @@ dotenv.config();
 const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:5174",
   "https://eshop-project-react-1.onrender.com",
+  "https://eshop-crm-react.onrender.com",
 ];
 
 app.use(

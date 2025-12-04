@@ -192,6 +192,7 @@ export const removeItemCart = async (
   }
 };
 
+// חיבור העגלת אורח למשתמש
 export const syncCart = async (
   req: AuthRequest,
   res: Response
@@ -200,8 +201,8 @@ export const syncCart = async (
     const userId = req.user.userId;
     const { items } = req.body;
 
-    for (const { productId, amount } of items) {
-      // עדכון או יצירה של הפריט בעגלה
+    for (let i = 0; i < items.length; i++) {
+      const { productId, amount } = items[i];
       await Cart.findOneAndUpdate(
         { userId, productId },
         { $inc: { amount } },
@@ -217,6 +218,8 @@ export const syncCart = async (
       .json({ error: "אירעה שגיאה בשרת, נסה שוב מאוחר יותר" });
   }
 };
+
+// ניקוי העגלה
 export const clearCart = async (
   req: AuthRequest,
   res: Response
