@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 const { TokenExpiredError } = jwt;
-import sgMail from "@sendgrid/mail";
+import { sendMail } from "../utils/SendEmail";
 
 // הרחבת Request של Express כדי שיהיה לנו userId
 interface AuthRequest extends Request {
@@ -64,26 +64,15 @@ export const register = async (
     const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
     const verifyUrl = `${FRONTEND_URL}/verify/${newUser._id}/${verificationToken}`;
 
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const EMAIL_USER = process.env.EMAIL_USER;
-
-    if (!SENDGRID_API_KEY) throw new Error("SENDGRID_API_KEY missing in .env");
-    if (!EMAIL_USER) throw new Error("EMAIL_USER missing in .env");
-
-    sgMail.setApiKey(SENDGRID_API_KEY);
-
-    const msg = {
-      to: email,
-      from: EMAIL_USER,
-      subject: "אימות כתובת האימייל שלך",
-      html: `
+    await sendMail(
+      email,
+      "אימות כתובת האימייל שלך",
+      `
         <h1>שלום ${userName},</h1>
         <p>אנא לחץ על הקישור הבא כדי לאמת את חשבונך:</p>
         <a href="${verifyUrl}">${verifyUrl}</a>
-      `,
-    };
-
-    await sgMail.send(msg);
+      `
+    );
 
     return res
       .status(201)
@@ -238,30 +227,18 @@ export const forgotPassword = async (
     });
 
     const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
-
     const resetUrl = `${FRONTEND_URL}/reset-password/${resetToken}`;
 
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const EMAIL_USER = process.env.EMAIL_USER;
-
-    if (!SENDGRID_API_KEY) throw new Error("SENDGRID_API_KEY missing in .env");
-    if (!EMAIL_USER) throw new Error("EMAIL_USER missing in .env");
-
-    sgMail.setApiKey(SENDGRID_API_KEY);
-
-    const msg = {
-      to: user.email,
-      from: EMAIL_USER,
-      subject: "איפוס סיסמה",
-      html: `
+    await sendMail(
+      user.email,
+      "איפוס סיסמה",
+      `
         <h1>שלום ${user.userName},</h1>
         <p>ביקשת לאפס את הסיסמה שלך.</p>
         <p>אנא לחץ על הקישור הבא כדי לבחור סיסמה חדשה (בתוקף ל-15 דקות):</p>
         <a href="${resetUrl}">${resetUrl}</a>
-      `,
-    };
-
-    await sgMail.send(msg);
+      `
+    );
 
     return res.json({ message: "אם האימייל קיים, נשלח קישור לאיפוס" });
   } catch (error) {
@@ -339,7 +316,7 @@ export const loginAdmin = async (
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
-      return res 
+      return res
         .status(400)
         .json({ error: "אימייל או סיסמה לא נכונים, או שאינך מנהל" });
     }
@@ -351,27 +328,16 @@ export const loginAdmin = async (
     user.codeExpiresAt = expiresAt;
     await user.save();
 
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const EMAIL_USER = process.env.EMAIL_USER;
-
-    if (!SENDGRID_API_KEY) throw new Error("SENDGRID_API_KEY missing in .env");
-    if (!EMAIL_USER) throw new Error("EMAIL_USER missing in .env");
-
-    sgMail.setApiKey(SENDGRID_API_KEY);
-
-    const msg = {
-      to: user.email,
-      from: EMAIL_USER,
-      subject: "קוד אימות כניסה - E-Shop CRM",
-      html: `
+    await sendMail(
+      user.email,
+      "קוד אימות כניסה - E-Shop CRM",
+      `
         <h1>שלום ${user.userName},</h1>
         <h2>קוד האימות שלך הוא: ${randomNumber}</h2>
         <span>הקוד בתוקף ל-10 דקות.</span>
-      `,
-    };
-
-    await sgMail.send(msg);
-
+      `
+    );
+    
     const JWT_SECRET = process.env.JWT_SECRET;
     if (!JWT_SECRET) {
       throw new Error("חסר מפתח סודי של טוקן");
