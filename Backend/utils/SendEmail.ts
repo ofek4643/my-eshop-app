@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 import { google } from "googleapis";
 
 export const createTransporter = async () => {
@@ -9,19 +10,10 @@ export const createTransporter = async () => {
   );
 
   oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-  let accessToken;
+  const accessToken = await oAuth2Client.getAccessToken();
 
-  try {
-    accessToken = await oAuth2Client.getAccessToken();
-    console.log("ACCESS TOKEN TOKEN:", accessToken?.token);
-  } catch (err) {
-    console.error("❌ OAuth Token Error:", err);
-  }
-  // כאן אנחנו משתמשים ב־host/port במקום service
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // חייב להיות true עבור 465
+    service: "gmail",
     auth: {
       type: "OAuth2",
       user: process.env.MAIL_USER,
@@ -30,25 +22,11 @@ export const createTransporter = async () => {
       refreshToken: process.env.REFRESH_TOKEN,
       accessToken: accessToken?.token,
     },
-  } as any); // as any כדי לעקוף בעיות טיפוס TypeScript
-
+  } as SMTPTransport.Options); // <- פה
   return transporter;
 };
 
 export const sendMail = async (to: string, subject: string, html: string) => {
-  try {
-    const transporter = await createTransporter();
-
-    const info = await transporter.sendMail({
-      from: process.env.MAIL_USER,
-      to,
-      subject,
-      html,
-    });
-
-    console.log("📩 Email sent:", info.messageId);
-  } catch (err) {
-    console.error("❌ Email sending error:", err);
-  }
+  const transporter = await createTransporter();
+  await transporter.sendMail({ from: process.env.MAIL_USER, to, subject, html });
 };
-

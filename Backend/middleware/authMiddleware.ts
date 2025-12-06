@@ -6,10 +6,11 @@ export const { TokenExpiredError, JsonWebTokenError } = jwt;
 import { Request, Response, NextFunction } from "express";
 
 // הרחבת ה־ Payload כך שיכלול מידע נוסף על המשתמש (שאתה שומר בטוקן)
-interface MyJwtPayload extends JwtPayload {
+export interface MyJwtPayload extends JwtPayload {
   userId: string;
   role: string;
   userName: string;
+  email: string;
 }
 
 // הרחבת טיפוס ה־ Request של Express כך שיכיל שדה user (שיתווסף אחרי אימות הטוקן)
@@ -26,7 +27,7 @@ export const authMiddleware = (
   next: NextFunction
 ) => {
   // שולף את הטוקן מהעוגיות
-  const token = req.cookies?.token;
+  const token = req.cookies?.userToken
   const JWT_SECRET = process.env.JWT_SECRET;
 
   // אם אין טוקן המשתמש לא מחובר

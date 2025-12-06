@@ -5,16 +5,15 @@ import { Request, Response } from "express";
 import { AddressFormData } from "../../Frontend/src/types/Address";
 import { OrderItem } from "../../Frontend/src/types/Order";
 
-
 // הרחבת Request של Express כדי שיהיה לנו userId
 interface AuthRequest extends Request {
   user: {
     userId: string;
     role: string;
     userName: string;
+    email: string;
   };
 }
-
 // פונקציה ליצירת הזמנה
 export const captureOrder = async (
   req: AuthRequest,
@@ -26,7 +25,7 @@ export const captureOrder = async (
     address,
   }: { items: OrderItem[]; totalPrice: string; address: AddressFormData } =
     req.body;
-  const userId = req.user.userId;
+  const { userId, userName, email } = req.user;
 
   try {
     // בדיקה אם יש מספיק מלאי לכל המוצרים
@@ -52,6 +51,8 @@ export const captureOrder = async (
     // יצירת ההזמנה
     const newOrder = await Order.create({
       userId,
+      userName,
+      email,
       items,
       totalPrice,
       isDelivered: false,

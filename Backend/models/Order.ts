@@ -7,13 +7,21 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    userName: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
     items: [
       {
         productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         name: { type: String, required: true },
         price: { type: Number, required: true },
         amount: { type: Number, required: true },
-        imageUrl: { type: String }, // שמירת תמונה של המוצר
+        imageUrl: { type: String },
       },
     ],
     totalPrice: { type: Number, required: true },

@@ -11,6 +11,7 @@ interface AuthRequest extends Request {
     userId: string;
     role: string;
     userName: string;
+    email: string;
   };
 }
 
@@ -337,7 +338,7 @@ export const loginAdmin = async (
         <span>הקוד בתוקף ל-10 דקות.</span>
       `
     );
-    
+
     const JWT_SECRET = process.env.JWT_SECRET;
     if (!JWT_SECRET) {
       throw new Error("חסר מפתח סודי של טוקן");
