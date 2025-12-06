@@ -36,11 +36,19 @@ export const createTransporter = async () => {
 };
 
 export const sendMail = async (to: string, subject: string, html: string) => {
-  const transporter = await createTransporter();
-  await transporter.sendMail({
-    from: process.env.MAIL_USER,
-    to,
-    subject,
-    html,
-  });
+  try {
+    const transporter = await createTransporter();
+
+    const info = await transporter.sendMail({
+      from: process.env.MAIL_USER,
+      to,
+      subject,
+      html,
+    });
+
+    console.log("📩 Email sent:", info.messageId);
+  } catch (err) {
+    console.error("❌ Email sending error:", err);
+  }
 };
+
