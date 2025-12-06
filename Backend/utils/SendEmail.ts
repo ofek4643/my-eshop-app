@@ -9,8 +9,14 @@ export const createTransporter = async () => {
   );
 
   oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-  const accessToken = await oAuth2Client.getAccessToken();
+  let accessToken;
 
+  try {
+    accessToken = await oAuth2Client.getAccessToken();
+    console.log("ACCESS TOKEN TOKEN:", accessToken?.token);
+  } catch (err) {
+    console.error("❌ OAuth Token Error:", err);
+  }
   // כאן אנחנו משתמשים ב־host/port במקום service
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
