@@ -22,5 +22,5 @@ export const deleteUserApi = async () => {
 
 // עדכון פרטי המשתמש
 export const updateUserApi = async (data: UpdateProfileData) => {
-  return await api.put("http://localhost:5000/api/user/profile", data);
+  return await api.put("/user/profile", data);
 };
