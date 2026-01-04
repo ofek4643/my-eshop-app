@@ -9,6 +9,7 @@ import { handleAxiosError } from "../../utils/errorHandler";
 import { AddressFormData } from "../../types/Address";
 import styles from "./MyOrder.module.css";
 
+// קומפוננטה לדף הזמנה
 const MyOrder = () => {
   const { id } = useParams();
   const [items, setItems] = useState<OrderItem[]>([]);
@@ -25,6 +26,7 @@ const MyOrder = () => {
     0
   );
 
+  // פונקציה לאישור קבלת משלוח
   const handleSubmit = async () => {
     if (!id) return;
     try {
@@ -40,6 +42,7 @@ const MyOrder = () => {
     }
   };
 
+  // משיכת ההזמנה
   useEffect(() => {
     const fetchOrder = async () => {
       if (!id) return;

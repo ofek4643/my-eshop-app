@@ -17,7 +17,7 @@ export const fetchUserCartThunk = createAsyncThunk<CartItem[], void>(
       const data = await fetchCart();
       return data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );
@@ -30,7 +30,7 @@ export const addOneItemThunk = createAsyncThunk<CartItem, string>(
       const res = await addOneItemCart({ productId });
       return res;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );
@@ -42,7 +42,7 @@ export const removeOneItemThunk = createAsyncThunk<CartItem, string>(
       const res = await removeOneItemCart({ productId });
       return res;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );
@@ -54,7 +54,7 @@ export const removeItemThunk = createAsyncThunk<CartItem, string>(
       const res = await removeItemCart({ productId });
       return res;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );
@@ -70,7 +70,7 @@ export const syncCartThunk = createAsyncThunk<void, CartItem[]>(
         })),
       });
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );

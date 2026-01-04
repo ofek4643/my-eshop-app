@@ -4,15 +4,19 @@ import { forgotPasswordApi } from "../../api/auth";
 import { toast } from "react-toastify";
 import { handleAxiosError } from "../../utils/errorHandler";
 
+// קומפוננטה לשכחתע סיסמא
 const ForgotPassword = () => {
   const [submited, setSubmited] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
+  // פונקיה לשליחת האיימל לשינוי הסיסמא
   const handleSubmit = async (e: React.FormEvent) => {
     setSubmited(true);
     e.preventDefault();
+
+    // בדיקה ראשונית של האיימל
     if (!/^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email)) {
       setEmailError(true);
       return;
@@ -28,6 +32,7 @@ const ForgotPassword = () => {
     }
   };
 
+  // בדיקה שהאיימל תקין בזמן אמת
   useEffect(() => {
     if (submited) {
       if (!/^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email)) {

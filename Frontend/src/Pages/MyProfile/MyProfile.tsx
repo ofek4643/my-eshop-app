@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { handleAxiosError } from "../../utils/errorHandler";
 import { useDispatch } from "react-redux";
-import { clearUser } from "../../store/slices/userSlice";
+import { clearUser, setUser } from "../../store/slices/userSlice";
 
 // קומפוננטה לפרופיל שלי
 const MyProfile = () => {
@@ -58,7 +58,7 @@ const MyProfile = () => {
     e.preventDefault();
     setSubmited(true);
     let errors = false;
-    
+
     //בדיקה ראשונית לאיתור שגיאות בשדות
     if (userName.length < 8) {
       setUserNameError(true);
@@ -103,6 +103,7 @@ const MyProfile = () => {
         newPassword,
         confirmNewPassword,
       });
+      dispatch(setUser(res.data.user));
       toast.success(res.data.message);
     } catch (error) {
       handleAxiosError(error);

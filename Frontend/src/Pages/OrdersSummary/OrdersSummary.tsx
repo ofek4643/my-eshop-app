@@ -12,6 +12,7 @@ const OrderSummary = () => {
     ? JSON.parse(savedAddress)
     : null;
 
+  // שליפת נתונים מהחנות וחישוב סכום ההזמנה
   const userCart = useSelector((state: RootState) => state.cart.userCart);
   const totalItems = userCart.reduce((sum, item) => sum + item.amount, 0);
   const totalPrice = userCart.reduce(

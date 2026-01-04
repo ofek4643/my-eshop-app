@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../api/auth";
 import { handleAxiosError } from "../../utils/errorHandler";
+
 // קומפוננטה להרשמה
 const Register: React.FC = () => {
   const [userName, setUserName] = useState("");

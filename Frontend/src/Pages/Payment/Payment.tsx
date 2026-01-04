@@ -13,6 +13,7 @@ import { clearCartApi } from "../../api/Cart";
 import { AddressFormData } from "../../types/Address";
 import { useState } from "react";
 
+// קומפוננטה לתשלום
 const Payment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
@@ -49,7 +50,7 @@ const Payment = () => {
         totalPrice: totalPriceStr,
         address,
       });
-
+      // מנקה את העגלה
       dispatch(clearUserCart());
       await clearCartApi();
       localStorage.removeItem("currentAddress");

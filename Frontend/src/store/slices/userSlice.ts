@@ -10,7 +10,7 @@ export const getUserThunk = createAsyncThunk(
       const data = await getUser();
       return data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error.response?.data?.message);
     }
   }
 );
@@ -37,7 +37,11 @@ const userSlice = createSlice({
       state.status = "idle";
       state.error = null;
     },
+    setUser: (state, action) => {
+      state.user = action.payload; // <-- כאן מעדכן את המשתמש
+    },
   },
+
   extraReducers: (builder) => {
     // ניהול מצבים של getUserThunk (pending, fulfilled, rejected)
     builder
@@ -55,5 +59,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { clearUser } = userSlice.actions;
+export const { clearUser, setUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -3,12 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./VerifyUser.module.css";
 import { verifyUserApi } from "../../api/auth";
 
+// קומפוננטה לאישור משתמש
 const VerifyUser = () => {
   const { userId, token } = useParams();
   const navigate = useNavigate();
-  const [status, setStatus] = useState("loading"); // loading | success | error
+  const [status, setStatus] = useState("loading");
   const [message, setMessage] = useState("");
 
+  // אישור המשתמש
   useEffect(() => {
     const verify = async () => {
       try {
